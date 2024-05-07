@@ -1,7 +1,8 @@
 package com.example.libaraymanagementsystem.service;
 
 import com.example.libaraymanagementsystem.dto.BookDto;
+import com.example.libaraymanagementsystem.entity.BookEntity;
 
 public interface BookService {
-    void addBook(BookDto bookDto);
+    BookEntity addBook(BookDto bookDto);
 }

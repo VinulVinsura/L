@@ -1,17 +1,22 @@
 package com.example.libaraymanagementsystem.controller;
 
 import com.example.libaraymanagementsystem.dto.BookDto;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.libaraymanagementsystem.entity.BookEntity;
+import com.example.libaraymanagementsystem.service.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/book")
 @CrossOrigin
 public class BookController {
 
-    public void addBook(BookDto bookDto){
+    @Autowired
+    BookService bookService;
 
+    @PostMapping("/addBook")
+    public BookEntity addBook(@RequestBody BookDto bookDto){
+         return bookService.addBook(bookDto);
     }
 
 
