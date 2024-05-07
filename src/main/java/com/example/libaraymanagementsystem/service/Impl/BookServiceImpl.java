@@ -19,11 +19,19 @@ public class BookServiceImpl implements BookService {
     public void setModelMapper(){
         this.modelMapper=new ModelMapper();
     }
-
-
-
     @Override
     public BookEntity addBook(BookDto bookDto) {
-        return repository.save(modelMapper.map(bookDto, BookEntity.class));
+        if (bookDto.getIsbn()!= "" &&
+                bookDto.getCategory() != "" &&
+                bookDto.getPrice() != null &&
+                bookDto.getQty() !=null &&
+                bookDto.getTitle() != "")
+        {
+            return repository.save(modelMapper.map(bookDto, BookEntity.class));
+
+        }
+        return null;
+
+
     }
 }
