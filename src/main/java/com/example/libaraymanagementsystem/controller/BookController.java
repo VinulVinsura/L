@@ -7,6 +7,8 @@ import com.example.libaraymanagementsystem.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,6 +44,13 @@ public class BookController {
         return bookService.getBooks();
 
 
+    }
+    @DeleteMapping("/deletebook/{id}")
+    public ResponseEntity<String> deleteBook(@PathVariable Integer id){
+        if (bookService.deleteBook(id)){
+            return ResponseEntity.ok("Deleted....");
+        }
+        return ResponseEntity.notFound().build();
     }
 
 }

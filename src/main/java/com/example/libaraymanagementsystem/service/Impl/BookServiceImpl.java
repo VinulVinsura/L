@@ -42,4 +42,15 @@ public class BookServiceImpl implements BookService {
         List<BookEntity> bookEntityList = repository.findAll();
         return modelMapper.map(bookEntityList,new TypeToken<List<BookDto>>(){}.getType());
     }
+
+    @Override
+    public boolean deleteBook(Integer id) {
+        if (repository.existsById(id)){
+            repository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+
 }

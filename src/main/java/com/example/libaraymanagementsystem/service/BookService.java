@@ -8,4 +8,5 @@ import java.util.List;
 public interface BookService {
     BookEntity addBook(BookDto bookDto);
     List<BookDto> getBooks();
+    boolean deleteBook(Integer id);
 }
