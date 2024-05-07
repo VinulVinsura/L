@@ -5,9 +5,13 @@ import com.example.libaraymanagementsystem.entity.BookEntity;
 import com.example.libaraymanagementsystem.repository.BookRepository;
 import com.example.libaraymanagementsystem.service.BookService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+
+import java.awt.print.Book;
+import java.util.List;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -31,7 +35,11 @@ public class BookServiceImpl implements BookService {
 
         }
         return null;
+    }
 
-
+    @Override
+    public List<BookDto> getBooks() {
+        List<BookEntity> bookEntityList = repository.findAll();
+        return modelMapper.map(bookEntityList,new TypeToken<List<BookDto>>(){}.getType());
     }
 }
