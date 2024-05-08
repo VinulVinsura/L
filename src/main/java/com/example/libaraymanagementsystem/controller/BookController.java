@@ -52,5 +52,23 @@ public class BookController {
         }
         return ResponseEntity.notFound().build();
     }
+    @GetMapping("/search/{id}")
+    @ResponseStatus(HttpStatus.FOUND)
+    public BookDto searchBookById(@PathVariable Integer id){
+        BookDto bookDto = bookService.searchBookById(id);
+        if (bookDto!=null){
+              return bookDto;
+        }
+        return null;
+    }
+
+    @GetMapping("/searchByIsbn/{isbn}")
+
+    public List<BookDto> searchBookByIsbn(@PathVariable String isbn){
+        List<BookDto> bookDtoList = bookService.searchBookByIsbn(isbn);
+        System.out.println(bookDtoList);
+        return bookDtoList;
+    }
+
 
 }

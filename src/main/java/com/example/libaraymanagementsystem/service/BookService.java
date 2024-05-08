@@ -9,4 +9,7 @@ public interface BookService {
     BookEntity addBook(BookDto bookDto);
     List<BookDto> getBooks();
     boolean deleteBook(Integer id);
+    BookDto searchBookById(Integer id);
+
+    List<BookDto> searchBookByIsbn(String isbn);
 }

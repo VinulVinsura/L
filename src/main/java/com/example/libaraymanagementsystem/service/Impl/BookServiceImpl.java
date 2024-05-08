@@ -11,7 +11,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.awt.print.Book;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -51,6 +53,24 @@ public class BookServiceImpl implements BookService {
         }
         return false;
     }
+
+    @Override
+    public BookDto searchBookById(Integer id) {
+        if (repository.existsById(id)){
+            Optional<BookEntity> optionalEntity = repository.findById(id);
+            return modelMapper.map(optionalEntity,BookDto.class);
+        }
+        return null;
+    }
+
+    @Override
+    public List<BookDto> searchBookByIsbn(String isbn) {
+
+        List<BookEntity> bookList = repository.findByIsbn(isbn);
+        System.out.println(bookList);
+        return modelMapper.map(bookList,new TypeToken<List<BookDto>>(){}.getType());
+    }
+
 
 
 }
